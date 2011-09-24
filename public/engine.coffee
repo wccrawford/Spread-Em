@@ -3,6 +3,7 @@ class @Engine
 		@modes = []
 		@sounds = []
 		@keysDown = []
+		@mouseEvents = []
 		@fps = 0
 		@lastFps = 0
 		
@@ -14,6 +15,12 @@ class @Engine
 		@fpsTime = date.getTime()
 
 		@canvas = document.getElementById('canvas')
+
+		window.onblur = @pause
+
+		window.onfocus = @start
+
+		@canvas.onmouseup = @mouseUp
 
 	addMode: (mode) ->
 		@modes.push mode
@@ -50,6 +57,14 @@ class @Engine
 		if index != -1
 			@keysDown[index..index] = []
 
+	mouseUp: (event) =>
+		@mouseEvents.push {
+			type: event.type
+			x: event.offsetX
+			y: event.offsetY
+			button: event.button
+		}
+
 	main: ->
 		date = new Date()
 		if ((date.getTime() - @time) >= @framelapse)
@@ -62,7 +77,9 @@ class @Engine
 				@lastFps = @fps
 				@fps = 0
 
-		@currentMode().update(@keysDown)
+		@currentMode().update()
+
+		@mouseEvents = []
 
 		@loopRef = setTimeout =>
 			@main()

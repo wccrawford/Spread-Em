@@ -1,4 +1,6 @@
 class @Mode.Title
+	constructor: (@engine) ->
+
 	draw: (context, width, height) ->
 		bigTextHeight = height / 5
 		smallTextHeight = height / 15
@@ -20,3 +22,14 @@ class @Mode.Title
 		context.fillText('Press space to continue...', (width / 2), height - border)
 
 	update: ->
+		if @engine.keysDown.count > 0
+			@showMenu
+			return
+
+		for event in @engine.mouseEvents
+			if event.type == 'mouseup' && event.button == 0
+				@showMenu()
+				return
+	
+	showMenu: ->
+		@engine.addMode new Mode.Menu(@engine)
