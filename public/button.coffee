@@ -1,14 +1,14 @@
 class @Button
 	constructor: (options) ->
-		@fontSize = options['fontSize'] || 25
-		@font = options['font'] || 'Arial'
-		@text = options['text'] || 'Button'
-		@location = [0, 0]
-		@size = [1, 1]
+		@fontSize    = options['fontSize'] || 25
+		@font        = options['font'] || 'Arial'
+		@text        = options['text'] || 'Button'
+		@location    = [0, 0]
+		@size        = [1, 1]
 		@location[0] = options['x'] || 0
 		@location[1] = options['y'] || 0
-		@size[0] = options['width'] || 1
-		@size[1] = options['height'] || 1
+		@size[0]     = options['width'] || 1
+		@size[1]     = options['height'] || 1
 
 	draw: (context) ->
 		context.strokeStyle = '#FFF'
