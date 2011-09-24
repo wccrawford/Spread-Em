@@ -10,3 +10,4 @@ class @Board
 			@height = 0
 
 		@board
+

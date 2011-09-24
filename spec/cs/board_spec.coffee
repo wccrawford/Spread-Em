@@ -20,3 +20,4 @@ describe 'board', ->
 		expect(@board.board).toEqual(board)
 		expect(@board.width).toEqual(2)
 		expect(@board.height).toEqual(3)
+
