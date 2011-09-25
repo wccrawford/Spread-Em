@@ -1,4 +1,5 @@
 { Board } = require 'board'
+{ Tile } = require 'tile'
 
 describe 'board', ->
 	beforeEach ->
@@ -16,7 +17,7 @@ describe 'board', ->
 			[ 0, 2, 0 ]
 		]
 		@board.setBoard(board)
-		expect(@board.board).toEqual(board)
+		#expect(@board.board).toEqual(board)
 		expect(@board.width).toEqual(2)
 		expect(@board.height).toEqual(3)
 	
@@ -34,5 +35,9 @@ describe 'board', ->
 			[ 0, 2, 0 ]
 		]
 		@board.setBoard(board)
-		expect(@board.board).toEqual(board)
+		expect(@board.width).toEqual(2)
+		expect(@board.height).toEqual(3)
+		for row, rowValue in board
+			for column, columnValue in rowValue
+				expect(@board.board[row][column].initialCount).toEqual(board)
 
